@@ -1,5 +1,5 @@
 services:
-  - name: backup-db
+  - name: backup-db-s3
     type: cron
     schedule: "0 3 * * *"
     region: ohio
