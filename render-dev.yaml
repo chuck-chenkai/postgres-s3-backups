@@ -10,7 +10,7 @@ projects:
             runtime: docker
             plan: standard
             dockerfilePath: ./Dockerfile
-            autoDeploy: false
+            autoDeployTrigger: false
             envVars:
               # pick the region closest to your database
               # For example, us-west-2 for the Oregon region
