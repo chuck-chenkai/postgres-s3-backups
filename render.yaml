@@ -2,24 +2,20 @@ services:
   - name: backup-db
     type: cron
     schedule: "0 3 * * *"
-    region: oregon
-    env: docker
+    region: ohio
+    runtime: docker
     plan: standard
     dockerfilePath: ./Dockerfile
     autoDeploy: false
     envVars:
-      - key: DATABASE_URL
-        fromDatabase:
-          name: replace-with-your-postgres-instance-name
-          property: connectionString
       # pick the region closest to your database
       # For example, us-west-2 for the Oregon region
       - key: AWS_REGION
-        sync: false 
+        value: "us-east-2" 
       # A globally unique name for your bucket
       # For example, <your-username>-<database name>-render-postgres-backups
       - key: S3_BUCKET_NAME
-        sync: false
+        value: "render-postgres-backup-342559556536-us-east-2-an"
       # Looks like "AKIAXXXXXXXXXXXXXXXX"
       - key: AWS_ACCESS_KEY_ID
         sync: false
@@ -28,9 +24,10 @@ services:
       # Postgres version of your Postgres instance 
       # For example, 16
       - key: POSTGRES_VERSION
-        sync: false
+        value: "17"
       # Alpine base-OS version, see README
       # For example, 3.20
       - key: ALPINE_VERSION
-        sync: false
+        value: "3.21"
+      - fromGroup: EnvGroup-Dev
 
