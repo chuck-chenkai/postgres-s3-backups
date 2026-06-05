@@ -3,35 +3,34 @@ projects:
     environments:
       - name: Development
         services:
-  - name: backup-db-s3
-    type: cron
-    schedule: "0 3 * * *"
-    region: ohio
-    runtime: docker
-    plan: standard
-    dockerfilePath: ./Dockerfile
-    autoDeploy: false
-    envVars:
-      # pick the region closest to your database
-      # For example, us-west-2 for the Oregon region
-      - key: AWS_REGION
-        value: "us-east-2" 
-      # A globally unique name for your bucket
-      # For example, <your-username>-<database name>-render-postgres-backups
-      - key: S3_BUCKET_NAME
-        value: "render-postgres-backup-342559556536-us-east-2-an"
-      # Looks like "AKIAXXXXXXXXXXXXXXXX"
-      - key: AWS_ACCESS_KEY_ID
-        sync: false
-      - key: AWS_SECRET_ACCESS_KEY
-        sync: false
-      # Postgres version of your Postgres instance 
-      # For example, 16
-      - key: POSTGRES_VERSION
-        value: "17"
-      # Alpine base-OS version, see README
-      # For example, 3.20
-      - key: ALPINE_VERSION
-        value: "3.21"
-      - fromGroup: EnvGroup-Dev
-
+          - name: backup-db-s3
+            type: cron
+            schedule: "0 3 * * *"
+            region: ohio
+            runtime: docker
+            plan: standard
+            dockerfilePath: ./Dockerfile
+            autoDeploy: false
+            envVars:
+              # pick the region closest to your database
+              # For example, us-west-2 for the Oregon region
+              - key: AWS_REGION
+                value: "us-east-2"
+              # A globally unique name for your bucket
+              # For example, <your-username>-<database name>-render-postgres-backups
+              - key: S3_BUCKET_NAME
+                value: "render-postgres-backup-342559556536-us-east-2-an"
+              # Looks like "AKIAXXXXXXXXXXXXXXXX"
+              - key: AWS_ACCESS_KEY_ID
+                sync: false
+              - key: AWS_SECRET_ACCESS_KEY
+                sync: false
+              # Postgres version of your Postgres instance
+              # For example, 16
+              - key: POSTGRES_VERSION
+                value: "17"
+              # Alpine base-OS version, see README
+              # For example, 3.20
+              - key: ALPINE_VERSION
+                value: "3.21"
+              - fromGroup: EnvGroup-Dev
