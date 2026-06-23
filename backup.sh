@@ -47,7 +47,7 @@ ensure_bucket_exists() {
 
 pg_dump_database() {
     # pg_dump --format=c --no-owner --no-privileges --clean --if-exists --quote-all-identifiers "$DATABASE_URL"
-    pg_dump --compress=6 --format=c --no-owner --no-privileges --clean --if-exists --quote-all-identifiers "$DATABASE_URL"
+    pg_dump --compress=zstd:6 --format=c --no-owner --no-privileges --clean --if-exists --quote-all-identifiers "$DATABASE_URL"
 }
 
 upload_to_bucket() {
